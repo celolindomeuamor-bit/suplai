@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as RelatoriosRouteImport } from './routes/relatorios'
+import { Route as ProdutosRouteImport } from './routes/produtos'
 import { Route as CampoRouteImport } from './routes/campo'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as RelatoriosIndexRouteImport } from './routes/relatorios.index'
@@ -18,6 +19,11 @@ import { Route as RelatoriosReportIdRouteImport } from './routes/relatorios.$rep
 const RelatoriosRoute = RelatoriosRouteImport.update({
   id: '/relatorios',
   path: '/relatorios',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProdutosRoute = ProdutosRouteImport.update({
+  id: '/produtos',
+  path: '/produtos',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CampoRoute = CampoRouteImport.update({
@@ -44,6 +50,7 @@ const RelatoriosReportIdRoute = RelatoriosReportIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/campo': typeof CampoRoute
+  '/produtos': typeof ProdutosRoute
   '/relatorios': typeof RelatoriosRouteWithChildren
   '/relatorios/$reportId': typeof RelatoriosReportIdRoute
   '/relatorios/': typeof RelatoriosIndexRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/campo': typeof CampoRoute
+  '/produtos': typeof ProdutosRoute
   '/relatorios/$reportId': typeof RelatoriosReportIdRoute
   '/relatorios': typeof RelatoriosIndexRoute
 }
@@ -58,6 +66,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/campo': typeof CampoRoute
+  '/produtos': typeof ProdutosRoute
   '/relatorios': typeof RelatoriosRouteWithChildren
   '/relatorios/$reportId': typeof RelatoriosReportIdRoute
   '/relatorios/': typeof RelatoriosIndexRoute
@@ -67,15 +76,17 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/campo'
+    | '/produtos'
     | '/relatorios'
     | '/relatorios/$reportId'
     | '/relatorios/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/campo' | '/relatorios/$reportId' | '/relatorios'
+  to: '/' | '/campo' | '/produtos' | '/relatorios/$reportId' | '/relatorios'
   id:
     | '__root__'
     | '/'
     | '/campo'
+    | '/produtos'
     | '/relatorios'
     | '/relatorios/$reportId'
     | '/relatorios/'
@@ -84,6 +95,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CampoRoute: typeof CampoRoute
+  ProdutosRoute: typeof ProdutosRoute
   RelatoriosRoute: typeof RelatoriosRouteWithChildren
 }
 
@@ -94,6 +106,13 @@ declare module '@tanstack/react-router' {
       path: '/relatorios'
       fullPath: '/relatorios'
       preLoaderRoute: typeof RelatoriosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/produtos': {
+      id: '/produtos'
+      path: '/produtos'
+      fullPath: '/produtos'
+      preLoaderRoute: typeof ProdutosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/campo': {
@@ -144,6 +163,7 @@ const RelatoriosRouteWithChildren = RelatoriosRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CampoRoute: CampoRoute,
+  ProdutosRoute: ProdutosRoute,
   RelatoriosRoute: RelatoriosRouteWithChildren,
 }
 export const routeTree = rootRouteImport
