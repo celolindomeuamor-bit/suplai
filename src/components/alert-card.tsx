@@ -20,36 +20,57 @@ export function AlertCard({
   alert,
   product,
   onVerify,
+  index = 0,
 }: {
   alert: Alert;
   product: Product;
   onVerify: () => void;
+  index?: number;
 }) {
   const meta = PRIORITY_META[alert.priority];
   const Icon = ICON_FOR_TYPE[alert.type];
+  const isCritical = alert.priority === "CRITICO";
 
   return (
     <div
-      className="relative rounded-md bg-surface border border-border overflow-hidden hover:border-muted-foreground/30 transition-colors"
-      style={{ borderLeft: `4px solid ${meta.color}` }}
+      className={cn(
+        "sg-fade-up sg-scanline group relative rounded-md bg-surface border border-border overflow-hidden transition-colors hover:border-muted-foreground/30"
+      )}
+      style={{
+        borderLeft: `4px solid ${meta.color}`,
+        animationDelay: `${Math.min(index, 8) * 60}ms`,
+        boxShadow: isCritical
+          ? `inset 1px 0 0 0 ${meta.color}, 0 0 0 1px color-mix(in oklab, ${meta.color} 12%, transparent)`
+          : `inset 1px 0 0 0 ${meta.color}`,
+      }}
     >
+      {/* subtle top hairline scan */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px opacity-40 sg-hairline" />
+
       <div className="p-4 md:p-5 space-y-3">
         <div className="flex items-start gap-3">
           <div
-            className="h-10 w-10 grid place-items-center rounded-md shrink-0"
-            style={{ background: `${meta.color}1A`, color: meta.color }}
+            className={cn(
+              "h-10 w-10 grid place-items-center rounded-md shrink-0 border transition-transform group-hover:scale-[1.04]",
+              isCritical && "sg-pulse-critical"
+            )}
+            style={{ background: `${meta.color}1A`, color: meta.color, borderColor: `${meta.color}40` }}
           >
             <Icon className="h-5 w-5" />
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 flex-wrap">
-              <h3 className="font-semibold text-base">{alert.title}</h3>
+              <h3 className="font-semibold text-base tracking-tight">{alert.title}</h3>
               <span
-                className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-sm"
-                style={{ background: `${meta.color}22`, color: meta.color }}
+                className={cn(
+                  "text-[10px] font-mono uppercase tracking-[0.12em] px-2 py-0.5 rounded-sm border",
+                  isCritical && "sg-badge-glow"
+                )}
+                style={{ background: `${meta.color}1F`, color: meta.color, borderColor: `${meta.color}55` }}
               >
                 {meta.label}
               </span>
+
             </div>
             <div className="text-sm text-foreground mt-0.5 truncate">{product.NOME}</div>
             <div className="text-xs text-muted-foreground font-mono">
