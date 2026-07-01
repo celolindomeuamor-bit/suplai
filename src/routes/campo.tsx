@@ -1,12 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
+import { toast } from "sonner";
 import { useStockGuard } from "@/lib/stockguard-store";
 import { PRIORITY_META } from "@/lib/stockguard-types";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { VerificationModal } from "@/components/verification-modal";
+import { SwipeableAlertRow } from "@/components/swipeable-alert-row";
 
 export const Route = createFileRoute("/campo")({
   head: () => ({
