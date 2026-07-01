@@ -101,15 +101,23 @@ export function VerificationModal({ open, onOpenChange, product, alert }: Props)
           />
         </div>
 
-        <div className="flex items-center justify-between rounded-md border border-border bg-background p-3">
-          <div>
-            <div className="text-sm font-medium">As informações no sistema estão corretas?</div>
-            <div className="text-xs text-muted-foreground">
+        <button
+          type="button"
+          onClick={() => setCorrect((c) => !c)}
+          className="w-full flex items-center justify-between rounded-md border border-border bg-background p-4 text-left transition-colors hover:border-muted-foreground/40 min-h-14"
+        >
+          <div className="flex-1 pr-4">
+            <div className="text-base font-medium">As informações no sistema estão corretas?</div>
+            <div className="text-xs text-muted-foreground mt-0.5">
               {correct ? "Sim — dados batem com o estoque físico" : "Não — preciso corrigir"}
             </div>
           </div>
-          <Switch checked={correct} onCheckedChange={setCorrect} />
-        </div>
+          <Switch
+            checked={correct}
+            onCheckedChange={setCorrect}
+            className="h-8 w-14 [&>span]:h-7 [&>span]:w-7 [&>span[data-state=checked]]:translate-x-6"
+          />
+        </button>
 
         {!correct && (
           <div className="space-y-2">
