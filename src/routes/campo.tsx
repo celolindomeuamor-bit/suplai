@@ -20,13 +20,14 @@ export const Route = createFileRoute("/campo")({
   component: FieldPage,
 });
 
-type Filter = "PENDENTES" | "VERIFICADOS" | "CORRIGIDOS";
+type Filter = "PENDENTES" | "VERIFICADOS" | "CORRIGIDOS" | "ADIADOS";
 
 function FieldPage() {
-  const { alerts, getProduct, verifications } = useStockGuard();
+  const { alerts, getProduct, verifications, registerVerification } = useStockGuard();
   const [q, setQ] = useState("");
   const [filter, setFilter] = useState<Filter>("PENDENTES");
   const [verifyId, setVerifyId] = useState<string | null>(null);
+  const [postponedIds, setPostponedIds] = useState<Set<string>>(new Set());
 
   const verifiedIds = new Set(verifications.map((v) => v.productId));
   const correctedIds = new Set(verifications.filter((v) => !v.correct).map((v) => v.productId));
@@ -34,8 +35,9 @@ function FieldPage() {
   const list = useMemo(() => {
     return alerts
       .filter((a) => {
-        if (filter === "PENDENTES") return !verifiedIds.has(a.productId);
+        if (filter === "PENDENTES") return !verifiedIds.has(a.productId) && !postponedIds.has(a.id);
         if (filter === "VERIFICADOS") return verifiedIds.has(a.productId);
+        if (filter === "ADIADOS") return postponedIds.has(a.id);
         return correctedIds.has(a.productId);
       })
       .filter((a) => {
@@ -43,7 +45,7 @@ function FieldPage() {
         const p = getProduct(a.productId);
         return p?.NOME.toLowerCase().includes(q.toLowerCase());
       });
-  }, [alerts, filter, q, verifiedIds, correctedIds, getProduct]);
+  }, [alerts, filter, q, verifiedIds, correctedIds, postponedIds, getProduct]);
 
   const total = alerts.length;
   const verified = verifiedIds.size;
