@@ -101,15 +101,23 @@ export function VerificationModal({ open, onOpenChange, product, alert }: Props)
           />
         </div>
 
-        <div className="flex items-center justify-between rounded-md border border-border bg-background p-3">
-          <div>
-            <div className="text-sm font-medium">As informações no sistema estão corretas?</div>
-            <div className="text-xs text-muted-foreground">
+        <button
+          type="button"
+          onClick={() => setCorrect((c) => !c)}
+          className="w-full flex items-center justify-between rounded-md border border-border bg-background p-4 text-left transition-colors hover:border-muted-foreground/40 min-h-14"
+        >
+          <div className="flex-1 pr-4">
+            <div className="text-base font-medium">As informações no sistema estão corretas?</div>
+            <div className="text-xs text-muted-foreground mt-0.5">
               {correct ? "Sim — dados batem com o estoque físico" : "Não — preciso corrigir"}
             </div>
           </div>
-          <Switch checked={correct} onCheckedChange={setCorrect} />
-        </div>
+          <Switch
+            checked={correct}
+            onCheckedChange={setCorrect}
+            className="h-8 w-14 [&>span]:h-7 [&>span]:w-7 [&>span[data-state=checked]]:translate-x-6"
+          />
+        </button>
 
         {!correct && (
           <div className="space-y-2">
@@ -119,29 +127,33 @@ export function VerificationModal({ open, onOpenChange, product, alert }: Props)
             <div className="flex gap-2">
               <Input
                 type="number"
+                inputMode="numeric"
+                pattern="[0-9]*"
+                autoFocus
                 value={correctedQty}
                 onChange={(e) => setCorrectedQty(e.target.value)}
-                className="bg-background border-border font-mono"
+                className="bg-background border-border font-mono text-lg h-12"
                 placeholder="Ex.: 13"
               />
               <Button
                 variant="outline"
                 onClick={() => toast.success("Correção registrada — aguardando confirmação final.")}
                 disabled={!correctedQty}
+                className="h-12 px-4"
               >
-                Confirmar Correção
+                Confirmar
               </Button>
             </div>
           </div>
         )}
 
         <DialogFooter className="gap-2 sm:gap-2">
-          <Button variant="ghost" onClick={() => onOpenChange(false)}>
+          <Button variant="ghost" onClick={() => onOpenChange(false)} className="h-12">
             Fechar
           </Button>
-          <Button onClick={handleConfirm} className="bg-primary text-primary-foreground hover:bg-primary/90">
-            <CheckCircle2 className="h-4 w-4 mr-2" />
-            Confirmado — Enviar para Relatório Semanal
+          <Button onClick={handleConfirm} className="bg-primary text-primary-foreground hover:bg-primary/90 h-12 text-base font-semibold">
+            <CheckCircle2 className="h-5 w-5 mr-2" />
+            Confirmado — Enviar
           </Button>
         </DialogFooter>
       </DialogContent>
