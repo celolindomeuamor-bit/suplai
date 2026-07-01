@@ -100,11 +100,12 @@ function AlertsPage() {
         </div>
       ) : (
         <div className="space-y-3">
-          {visible.map((a) => {
+          {visible.map((a, i) => {
             const p = getProduct(a.productId);
             if (!p) return null;
-            return <AlertCard key={a.id} alert={a} product={p} onVerify={() => setVerifyId(a.id)} />;
+            return <AlertCard key={a.id} alert={a} product={p} index={i} onVerify={() => setVerifyId(a.id)} />;
           })}
+
         </div>
       )}
 
