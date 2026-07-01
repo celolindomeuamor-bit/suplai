@@ -2,6 +2,8 @@ import { AlertTriangle, ArrowRight, Boxes, CalendarClock, Eye, PackageX, ShieldA
 import { PRIORITY_META } from "@/lib/stockguard-types";
 import type { Alert, Product, AlertType } from "@/lib/stockguard-types";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+
 
 const ICON_FOR_TYPE: Record<AlertType, typeof AlertTriangle> = {
   RUPTURA: PackageX,
