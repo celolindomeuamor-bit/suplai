@@ -83,3 +83,60 @@
     font-family: var(--font-mono);
   }
 }
+
+/* ============ StockGuard motion + surface utilities ============ */
+
+@keyframes sg-fade-up {
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes sg-pulse-critical {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--priority-critical) 55%, transparent); }
+  50%      { box-shadow: 0 0 0 6px color-mix(in oklab, var(--priority-critical) 0%, transparent); }
+}
+@keyframes sg-glow {
+  0%, 100% { box-shadow: 0 0 0 0 transparent; }
+  50%      { box-shadow: 0 0 12px 0 currentColor; }
+}
+@keyframes sg-shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+@keyframes sg-scan {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+@utility sg-fade-up {
+  animation: sg-fade-up 0.42s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+@utility sg-pulse-critical {
+  animation: sg-pulse-critical 2.2s ease-out infinite;
+}
+@utility sg-badge-glow {
+  animation: sg-glow 2.4s ease-in-out infinite;
+}
+@utility sg-skeleton {
+  background: linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--surface) 100%, transparent) 0%,
+    color-mix(in oklab, var(--muted) 60%, var(--surface)) 40%,
+    color-mix(in oklab, var(--surface) 100%, transparent) 80%
+  );
+  background-size: 800px 100%;
+  animation: sg-shimmer 1.4s linear infinite;
+}
+@utility sg-scanline {
+  position: relative;
+  overflow: hidden;
+}
+@utility sg-hairline {
+  background-image: linear-gradient(
+    to right,
+    transparent 0,
+    color-mix(in oklab, var(--muted-foreground) 30%, transparent) 50%,
+    transparent 100%
+  );
+  height: 1px;
+}
+

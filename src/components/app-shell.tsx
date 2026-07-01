@@ -12,20 +12,23 @@ const NAV = [
 ] as const;
 
 function useNow() {
-  const [now, setNow] = useState(() => new Date());
+  const [now, setNow] = useState<Date | null>(null);
   useEffect(() => {
+    setNow(new Date());
     const id = setInterval(() => setNow(new Date()), 30_000);
     return () => clearInterval(id);
   }, []);
   return now;
 }
 
+
 export function AppShell({ children }: { children: ReactNode }) {
   const { alerts } = useStockGuard();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const now = useNow();
-  const dateStr = now.toLocaleDateString("pt-BR", { weekday: "short", day: "2-digit", month: "short" });
-  const timeStr = now.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+  const dateStr = now ? now.toLocaleDateString("pt-BR", { weekday: "short", day: "2-digit", month: "short" }) : "—";
+  const timeStr = now ? now.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" }) : "--:--";
+
 
   return (
     <div className="flex min-h-screen w-full bg-background text-foreground">
