@@ -35,10 +35,12 @@ export function AppShell({ children }: { children: ReactNode }) {
     <div className="flex min-h-screen w-full bg-background text-foreground">
       {/* Sidebar desktop */}
       <aside className="hidden md:flex w-60 shrink-0 flex-col border-r border-border bg-surface">
-        <div className="flex items-center gap-3 px-5 h-16 border-b border-border">
-          <img src={suplaiLogo.url} alt="Suplai" className="h-10 w-10 rounded-md object-contain" />
+        <div className="flex items-center gap-3.5 px-5 h-16 border-b border-border">
+          <div className="relative h-12 w-12 shrink-0 rounded-lg bg-gradient-to-br from-primary/20 to-primary/5 p-1.5 ring-1 ring-primary/20">
+            <img src={suplaiLogo.url} alt="Suplai" className="h-full w-full rounded object-contain" />
+          </div>
           <div>
-            <div className="font-bold tracking-tight">Suplai</div>
+            <div className="text-lg font-bold tracking-tight">Suplai</div>
             <div className="text-[10px] font-mono uppercase text-muted-foreground">v1.0 · ops</div>
           </div>
         </div>
@@ -71,9 +73,11 @@ export function AppShell({ children }: { children: ReactNode }) {
       <div className="flex-1 flex flex-col min-w-0">
         {/* Top bar */}
         <header className="sticky top-0 z-20 flex items-center gap-4 px-4 md:px-6 h-16 border-b border-border bg-background/95 backdrop-blur">
-          <div className="md:hidden flex items-center gap-2">
-            <img src={suplaiLogo.url} alt="Suplai" className="h-7 w-7 rounded object-contain" />
-            <span className="font-bold">Suplai</span>
+          <div className="md:hidden flex items-center gap-2.5">
+            <div className="relative h-9 w-9 shrink-0 rounded-md bg-gradient-to-br from-primary/20 to-primary/5 p-1 ring-1 ring-primary/20">
+              <img src={suplaiLogo.url} alt="Suplai" className="h-full w-full rounded-sm object-contain" />
+            </div>
+            <span className="text-base font-bold tracking-tight">Suplai</span>
           </div>
           <div className="hidden md:flex flex-col">
             <span className="text-xs text-muted-foreground font-mono uppercase">{dateStr}</span>
