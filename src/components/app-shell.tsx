@@ -72,7 +72,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         {/* Top bar */}
         <header className="sticky top-0 z-20 flex items-center gap-4 px-4 md:px-6 h-16 border-b border-border bg-background/95 backdrop-blur">
           <div className="md:hidden flex items-center gap-2">
-            <img src={suplaiLogo.url} alt="Suplai" className="h-7 w-7 rounded object-contain" />
+            <img src={suplaiLogo.url} alt="Suplai" className="h-9 w-9 rounded object-contain" />
             <span className="font-bold">Suplai</span>
           </div>
           <div className="hidden md:flex flex-col">
