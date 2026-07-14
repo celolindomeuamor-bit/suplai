@@ -36,7 +36,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       {/* Sidebar desktop */}
       <aside className="hidden md:flex w-60 shrink-0 flex-col border-r border-border bg-surface">
         <div className="flex items-center gap-3 px-5 h-16 border-b border-border">
-          <img src={suplaiLogo.url} alt="Suplai" className="h-10 w-10 rounded-md object-contain" />
+          <img src={suplaiLogo.url} alt="Suplai" className="h-12 w-12 rounded-md object-contain" />
           <div>
             <div className="font-bold tracking-tight">Suplai</div>
             <div className="text-[10px] font-mono uppercase text-muted-foreground">v1.0 · ops</div>
@@ -72,7 +72,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         {/* Top bar */}
         <header className="sticky top-0 z-20 flex items-center gap-4 px-4 md:px-6 h-16 border-b border-border bg-background/95 backdrop-blur">
           <div className="md:hidden flex items-center gap-2">
-            <img src={suplaiLogo.url} alt="Suplai" className="h-7 w-7 rounded object-contain" />
+            <img src={suplaiLogo.url} alt="Suplai" className="h-9 w-9 rounded object-contain" />
             <span className="font-bold">Suplai</span>
           </div>
           <div className="hidden md:flex flex-col">
