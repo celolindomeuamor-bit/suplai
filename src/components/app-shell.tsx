@@ -1,8 +1,9 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Bell, Shield, Bell as BellIcon, ShieldCheck, ClipboardCheck, FileBarChart, Package } from "lucide-react";
+import { Bell, ShieldCheck, Bell as BellIcon, ClipboardCheck, FileBarChart, Package } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
 import { useStockGuard } from "@/lib/stockguard-store";
 import { cn } from "@/lib/utils";
+import suplaiLogo from "@/assets/suplai-logo.png.asset.json";
 
 const NAV = [
   { to: "/", label: "Alertas", icon: BellIcon },
