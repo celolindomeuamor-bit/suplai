@@ -35,12 +35,10 @@ export function AppShell({ children }: { children: ReactNode }) {
     <div className="flex min-h-screen w-full bg-background text-foreground">
       {/* Sidebar desktop */}
       <aside className="hidden md:flex w-60 shrink-0 flex-col border-r border-border bg-surface">
-        <div className="flex items-center gap-2 px-5 h-16 border-b border-border">
-          <div className="flex h-9 w-9 items-center justify-center rounded-md bg-primary/10 text-primary">
-            <Shield className="h-5 w-5" />
-          </div>
+        <div className="flex items-center gap-3 px-5 h-16 border-b border-border">
+          <img src={suplaiLogo.url} alt="Suplai" className="h-10 w-10 rounded-md object-contain" />
           <div>
-            <div className="font-bold tracking-tight">StockGuard</div>
+            <div className="font-bold tracking-tight">Suplai</div>
             <div className="text-[10px] font-mono uppercase text-muted-foreground">v1.0 · ops</div>
           </div>
         </div>
