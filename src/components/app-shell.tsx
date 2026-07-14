@@ -36,7 +36,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       {/* Sidebar desktop */}
       <aside className="hidden md:flex w-60 shrink-0 flex-col border-r border-border bg-surface">
         <div className="flex items-center gap-3 px-5 h-16 border-b border-border">
-          <img src={suplaiLogo.url} alt="Suplai" className="h-10 w-10 rounded-md object-contain" />
+          <img src={suplaiLogo.url} alt="Suplai" className="h-12 w-12 rounded-md object-contain" />
           <div>
             <div className="font-bold tracking-tight">Suplai</div>
             <div className="text-[10px] font-mono uppercase text-muted-foreground">v1.0 · ops</div>
