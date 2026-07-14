@@ -1,8 +1,9 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Bell, Shield, Bell as BellIcon, ShieldCheck, ClipboardCheck, FileBarChart, Package } from "lucide-react";
+import { Bell, ShieldCheck, Bell as BellIcon, ClipboardCheck, FileBarChart, Package } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
 import { useStockGuard } from "@/lib/stockguard-store";
 import { cn } from "@/lib/utils";
+import suplaiLogo from "@/assets/suplai-logo.png.asset.json";
 
 const NAV = [
   { to: "/", label: "Alertas", icon: BellIcon },
@@ -34,12 +35,10 @@ export function AppShell({ children }: { children: ReactNode }) {
     <div className="flex min-h-screen w-full bg-background text-foreground">
       {/* Sidebar desktop */}
       <aside className="hidden md:flex w-60 shrink-0 flex-col border-r border-border bg-surface">
-        <div className="flex items-center gap-2 px-5 h-16 border-b border-border">
-          <div className="flex h-9 w-9 items-center justify-center rounded-md bg-primary/10 text-primary">
-            <Shield className="h-5 w-5" />
-          </div>
+        <div className="flex items-center gap-3 px-5 h-16 border-b border-border">
+          <img src={suplaiLogo.url} alt="Suplai" className="h-10 w-10 rounded-md object-contain" />
           <div>
-            <div className="font-bold tracking-tight">StockGuard</div>
+            <div className="font-bold tracking-tight">Suplai</div>
             <div className="text-[10px] font-mono uppercase text-muted-foreground">v1.0 · ops</div>
           </div>
         </div>
@@ -73,8 +72,8 @@ export function AppShell({ children }: { children: ReactNode }) {
         {/* Top bar */}
         <header className="sticky top-0 z-20 flex items-center gap-4 px-4 md:px-6 h-16 border-b border-border bg-background/95 backdrop-blur">
           <div className="md:hidden flex items-center gap-2">
-            <Shield className="h-5 w-5 text-primary" />
-            <span className="font-bold">StockGuard</span>
+            <img src={suplaiLogo.url} alt="Suplai" className="h-7 w-7 rounded object-contain" />
+            <span className="font-bold">Suplai</span>
           </div>
           <div className="hidden md:flex flex-col">
             <span className="text-xs text-muted-foreground font-mono uppercase">{dateStr}</span>
