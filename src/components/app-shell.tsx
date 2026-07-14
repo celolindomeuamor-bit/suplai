@@ -34,12 +34,45 @@ export function AppShell({ children }: { children: ReactNode }) {
   return (
     <div className="flex min-h-screen w-full bg-background text-foreground">
       {/* Sidebar desktop */}
-      <aside className="hidden md:flex w-60 shrink-0 flex-col border-r border-border bg-surface">
-        <div className="flex items-center gap-3 px-5 h-16 border-b border-border">
-          <img src={suplaiLogo.url} alt="Suplai" className="h-10 w-10 rounded-md object-contain" />
-          <div>
-            <div className="font-bold tracking-tight">Suplai</div>
-            <div className="text-[10px] font-mono uppercase text-muted-foreground">v1.0 · ops</div>
+      <aside className="hidden md:flex w-64 shrink-0 flex-col border-r border-border bg-surface">
+        <div className="relative px-5 pt-6 pb-5 border-b border-border overflow-hidden">
+          {/* Radial glow backdrop */}
+          <div
+            aria-hidden
+            className="absolute inset-0 opacity-70"
+            style={{
+              background:
+                "radial-gradient(120% 80% at 50% 0%, color-mix(in oklab, var(--color-primary) 22%, transparent) 0%, transparent 60%)",
+            }}
+          />
+          <div
+            aria-hidden
+            className="absolute inset-x-0 bottom-0 h-px"
+            style={{
+              background:
+                "linear-gradient(90deg, transparent, color-mix(in oklab, var(--color-primary) 55%, transparent), transparent)",
+            }}
+          />
+          <div className="relative flex flex-col items-center text-center">
+            <div className="relative">
+              <div
+                aria-hidden
+                className="absolute inset-0 -m-2 rounded-2xl blur-xl opacity-60"
+                style={{ background: "color-mix(in oklab, var(--color-primary) 35%, transparent)" }}
+              />
+              <img
+                src={suplaiLogo.url}
+                alt="Suplai"
+                className="relative h-20 w-20 rounded-2xl object-contain ring-1 ring-border shadow-lg"
+              />
+            </div>
+            <div className="mt-3 text-lg font-bold tracking-[0.18em] uppercase text-foreground">
+              Suplai
+            </div>
+            <div className="mt-1 flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+              <span className="h-1.5 w-1.5 rounded-full bg-priority-low animate-pulse" />
+              v1.0 · ops
+            </div>
           </div>
         </div>
         <nav className="flex-1 p-3 space-y-1">
@@ -71,9 +104,20 @@ export function AppShell({ children }: { children: ReactNode }) {
       <div className="flex-1 flex flex-col min-w-0">
         {/* Top bar */}
         <header className="sticky top-0 z-20 flex items-center gap-4 px-4 md:px-6 h-16 border-b border-border bg-background/95 backdrop-blur">
-          <div className="md:hidden flex items-center gap-2">
-            <img src={suplaiLogo.url} alt="Suplai" className="h-7 w-7 rounded object-contain" />
-            <span className="font-bold">Suplai</span>
+          <div className="md:hidden flex items-center gap-2.5">
+            <div className="relative">
+              <div
+                aria-hidden
+                className="absolute inset-0 rounded-lg blur-md opacity-70"
+                style={{ background: "color-mix(in oklab, var(--color-primary) 40%, transparent)" }}
+              />
+              <img
+                src={suplaiLogo.url}
+                alt="Suplai"
+                className="relative h-10 w-10 rounded-lg object-contain ring-1 ring-border"
+              />
+            </div>
+            <span className="font-bold tracking-[0.14em] uppercase text-sm">Suplai</span>
           </div>
           <div className="hidden md:flex flex-col">
             <span className="text-xs text-muted-foreground font-mono uppercase">{dateStr}</span>
